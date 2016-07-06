@@ -29,8 +29,8 @@ public class ContentTopicService {
         return saved;
     }
 
-    public ContentTopic delete(String id) throws ContentTopicNotFoundException {
-        ContentTopic deleted = find(id);
+    public ContentTopic deleteOne(String id) throws ContentTopicNotFoundException {
+        ContentTopic deleted = findOne(id);
         if (deleted != null) {
             repository.delete(id);
         }
@@ -38,8 +38,8 @@ public class ContentTopicService {
         return deleted;
     }
 
-    public ContentTopic find(String id) throws ContentTopicNotFoundException {
-        ContentTopic found = repository.find(id);
+    public ContentTopic findOne(String id) throws ContentTopicNotFoundException {
+        ContentTopic found = repository.findOne(id);
         if (found != null) {
             return found;
         }
@@ -48,8 +48,8 @@ public class ContentTopicService {
         }
     }
 
-    public ContentTopic update(ContentTopic topic) throws ContentTopicNotFoundException {
-        ContentTopic old = find(topic.getID());
+    public ContentTopic updateOne(ContentTopic topic) throws ContentTopicNotFoundException {
+        ContentTopic old = findOne(topic.getID());
         if (old != null) {
             ContentTopic updated = repository.save(topic);
             return updated;

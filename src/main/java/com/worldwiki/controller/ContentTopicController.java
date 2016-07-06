@@ -12,6 +12,7 @@ import com.worldwiki.model.world.topic.ContentTopic;
 import com.worldwiki.service.ContentTopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
@@ -28,29 +29,29 @@ public class ContentTopicController {
     }
 
     // Get Content Topic
-    @RequestMapping(value = "{topicID}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "{topicID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ContentTopic getContentTopic(@PathVariable String topicID) throws ContentTopicNotFoundException {
-        return service.find(topicID);
+        return service.findOne(topicID);
     }
 
     // Create Content Topic
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ContentTopic createContentTopic(@RequestBody @Valid ContentTopic topic) {
         return service.create(topic);
     }
 
     // Update Content Topic
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ContentTopic updateContentTopic(@RequestBody @Valid ContentTopic topic) throws ContentTopicNotFoundException {
-        return service.update(topic);
+        return service.updateOne(topic);
     }
 
     // Exception Handler
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleContentTopicNotFound(ContentTopicNotFoundException ex) {
-        return String.format("No content topic with id: %1$s", ex.getMessage());
+        return String.format("{\"reason\": \"No content topic with id: %1$s\"}", ex.getMessage());
     }
 }

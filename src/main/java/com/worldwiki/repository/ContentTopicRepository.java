@@ -9,11 +9,10 @@ package com.worldwiki.repository;
 
 import com.worldwiki.model.world.topic.ContentTopic;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 
+@Repository
 public interface ContentTopicRepository extends MongoRepository<ContentTopic, String> {
 
-    public ContentTopic find(String id);
-    public ContentTopic save(ContentTopic topic);
-    public void delete(ContentTopic topic);
 }
