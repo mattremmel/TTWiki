@@ -23,7 +23,7 @@ public class ContentTopic {
     // TODO: Hold links to other content
 
     public ContentTopic() {
-
+        this.snippetGroups = new ArrayList<SnippetGroup>();
     }
 
     public String getID() {
