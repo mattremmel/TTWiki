@@ -8,17 +8,25 @@
 package com.worldwiki.model.world.topic;
 
 import com.worldwiki.model.world.snippet.SnippetGroup;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 
 
+@Document(collection = "topics")
 public class ContentTopic {
 
+    @Id
     protected String topicID;
     protected ContentTopicType topicType;
     protected ArrayList<SnippetGroup> snippetGroups;
     // TODO: Hold links to other content
 
     public ContentTopic() {
-        // TODO: Setup topicID
+
+    }
+
+    public String getID() {
+        return topicID;
     }
 }
