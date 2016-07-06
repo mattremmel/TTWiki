@@ -1,5 +1,5 @@
 //
-// Individual.java
+// IndividualTopic.java
 // WorldWiki
 //
 // Created by Matthew Remmel on 7/5/16.
@@ -10,9 +10,9 @@ package com.worldwiki.model.world.topic;
 import com.worldwiki.model.world.snippet.*;
 
 
-public class Individual extends ContentTopic {
+public class IndividualTopic extends ContentTopic {
     
-    public Individual() {
+    public IndividualTopic() {
 
         // Set topic type
         this.topicType = ContentTopicType.Individual;

@@ -30,8 +30,10 @@ public class ContentTopicController {
 
     // Get Content Topic
     @RequestMapping(value = "{topicID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.FOUND)
     public ContentTopic getContentTopic(@PathVariable String topicID) throws ContentTopicNotFoundException {
-        return service.findOne(topicID);
+        ContentTopic found = service.findOne(topicID);
+        return found;
     }
 
     // Create Content Topic

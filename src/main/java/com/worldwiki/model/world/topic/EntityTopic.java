@@ -1,5 +1,5 @@
 //
-// Entity.java
+// EntityTopic.java
 // WorldWiki
 //
 // Created by Matthew Remmel on 7/5/16.
@@ -8,9 +8,9 @@
 package com.worldwiki.model.world.topic;
 
 
-public class Entity extends ContentTopic {
+public class EntityTopic extends ContentTopic {
 
-    public Entity() {
+    public EntityTopic() {
 
     }
 }

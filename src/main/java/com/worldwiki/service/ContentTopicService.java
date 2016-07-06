@@ -9,7 +9,8 @@ package com.worldwiki.service;
 
 import com.worldwiki.exception.ContentTopicNotFoundException;
 import com.worldwiki.model.world.topic.ContentTopic;
-import com.worldwiki.repository.ContentTopicRepository;
+import com.worldwiki.model.world.topic.IndividualTopic;
+import com.worldwiki.persistence.ContentTopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
