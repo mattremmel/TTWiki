@@ -18,13 +18,13 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("api/content")
-public class ContentTopicController {
+@RequestMapping("api/topic")
+public class ContentTopicAPIController {
 
     private final ContentTopicService service;
 
     @Autowired
-    ContentTopicController(ContentTopicService service) {
+    ContentTopicAPIController(ContentTopicService service) {
         this.service = service;
     }
 
@@ -32,19 +32,18 @@ public class ContentTopicController {
     @RequestMapping(value = "{topicID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.FOUND)
     public ContentTopic getContentTopic(@PathVariable String topicID) throws ContentTopicNotFoundException {
-        ContentTopic found = service.findOne(topicID);
-        return found;
+        return service.findOne(topicID);
     }
 
     // Create Content Topic
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ContentTopic createContentTopic(@RequestBody @Valid ContentTopic topic) {
         return service.create(topic);
     }
 
     // Update Content Topic
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ContentTopic updateContentTopic(@RequestBody @Valid ContentTopic topic) throws ContentTopicNotFoundException {
         return service.updateOne(topic);
