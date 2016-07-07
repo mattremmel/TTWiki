@@ -1,5 +1,5 @@
 //
-// ContentTopicController.java
+// AppConfig.java
 // WorldWiki
 //
 // Created by Matthew Remmel on 7/5/16.
@@ -20,11 +20,13 @@ import java.net.UnknownHostException;
 @Configuration
 public class AppConfig {
 
+    // MongoDB Factory
     @Bean
     public MongoDbFactory mongoDbFactory() throws UnknownHostException {
         return new SimpleMongoDbFactory(new MongoClient("localhost", 27017), "WorldWiki");
     }
 
+    // MongoDB Operations
     @Bean
     public MongoOperations mongoOperations() throws UnknownHostException {
         return new MongoTemplate(mongoDbFactory());
