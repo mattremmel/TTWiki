@@ -1,28 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ContentTopicApp">
+<html lang="en" ng-app="ContentTopicApp" ng-cloak ng-init="editMode = false">
 
 <head>
     <meta charset="UTF-8">
     <title>Content Topic</title>
+    <style>
+        [ng\:cloak], [ng-cloak], .ng-cloak { display: none; }
+    </style>
 </head>
 
 <body ng-controller="ContentTopicController">
 
     <h3>{{topicData['topicType']}}</h3>
+    <p>
+        <button ng-if="!editMode" ng-click="startEditMode()">Edit</button>
+        <button ng-if="editMode" ng-click="cancelEditMode();">Cancel</button>
+        <button ng-if="editMode" ng-click="saveContentTopic()">Save</button>
+    </p>
 
-    <div class="snippetGroup" ng-repeat="group in topicData['snippetGroups']">
+    <div class="snippetGroup" ng-repeat="(groupIndex, group) in topicData.snippetGroups">
 
-        <h4>{{group['title']}}</h4>
-        <p ng-repeat="snippet in group['snippets']">
-            {{snippet['title']}}
-            <input type="text" placeholder="Enter text.." ng-model="snippet['content']" />
-        </p>
+        <!-- TODO: Can break out snippet types into partials to be loaded with contained content -->
+        <h4>{{group.title}}</h4>
+
+        <span class="snippet" ng-repeat="(snippetIndex, snippet) in group.snippets">
+            <p ng-if="snippet.content.length > 0 || editMode">
+                <input class="revealedCheckbox" type="checkbox" ng-model="snippet.revealed" />
+
+                <!-- Normal Mode TODO: Only show if content isn't empty-->
+                <span class="snippetTitleLabel" ng-if="!editMode" >{{snippet.title}}</span>
+                <span class="snippetContentLabel" ng-if="!editMode" >{{snippet.content}}</span>
+
+                <!-- Edit Mode -->
+                <input class="snippetTitleInput" type="text" ng-if="editMode" ng-model="snippet.title" />
+                <input class=snippetContentInput" type="text" ng-if="editMode" ng-model="snippet.content" />
+                <button class="snippetDeleteButton" ng-if="editMode" ng-click="deleteSnippet(groupIndex, snippetIndex)" >Delete</button>
+            </p>
+        </span>
+
+        <button class="addSnippetButton" ng-if="editMode" ng-click="addTextSnippet($index)" >Add</button>
         <br>
     </div>
 
+    <button ng-if="editMode" ng-click="saveContentTopic()">Save</button>
+
 </body>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+    <script src="../lib/angular.js"></script>
     <script src="../js/ContentTopicApp.js"></script>
     <script src="../js/ContentTopicControllers.js"></script>
     <script src="../js/ContentTopicServices.js"></script>
