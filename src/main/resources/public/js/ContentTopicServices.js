@@ -11,7 +11,7 @@ angular.module('ContentTopic.services').factory('ContentTopicService', function(
     var ContentTopicAPI = {};
 
     ContentTopicAPI.getContentTopic = function(id) {
-        return $http.get('localhost:8080/api/topic/' + id);
+        return $http.get('http://localhost:8080/api/topic/' + id);
     }
 
     return ContentTopicAPI;

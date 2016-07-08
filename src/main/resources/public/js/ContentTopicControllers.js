@@ -7,5 +7,11 @@
 
 angular.module('ContentTopic.controllers', []);
 angular.module('ContentTopic.controllers').controller('ContentTopicController', function($scope, ContentTopicService) {
-    $scope.controllerTest = "Controller is working!"
+    ContentTopicService.getContentTopic('577e8ebfd4c61ebc71746fcd')
+        .then(function success(response) {
+            console.log("Got response!");
+            $scope.topicData = response.data;
+    }, function failed(response) {
+        console.log('An error occurred: ' + response.statusText);
+    });
 });
