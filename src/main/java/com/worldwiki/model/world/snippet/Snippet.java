@@ -7,9 +7,11 @@
 
 package com.worldwiki.model.world.snippet;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import java.util.ArrayList;
 
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public abstract class Snippet {
 
     // The snippet type that defines what kind of content it contains

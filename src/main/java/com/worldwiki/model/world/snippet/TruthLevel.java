@@ -7,7 +7,10 @@
 
 package com.worldwiki.model.world.snippet;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public enum TruthLevel {
     // Indicates that the information in the snippet is true
     Truth,

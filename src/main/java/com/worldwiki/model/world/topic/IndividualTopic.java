@@ -7,9 +7,11 @@
 
 package com.worldwiki.model.world.topic;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.worldwiki.model.world.snippet.*;
 
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class IndividualTopic extends ContentTopic {
     
     public IndividualTopic() {

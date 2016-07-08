@@ -7,11 +7,13 @@
 
 package com.worldwiki.model.world;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.worldwiki.model.world.topic.ContentTopic;
 import org.springframework.data.annotation.Id;
 import java.util.ArrayList;
 
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class World {
 
     @Id

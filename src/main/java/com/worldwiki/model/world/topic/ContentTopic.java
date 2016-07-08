@@ -7,6 +7,7 @@
 
 package com.worldwiki.model.world.topic;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.worldwiki.model.world.snippet.SnippetGroup;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 
 @Document(collection = "topics")
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ContentTopic {
 
     @Id
