@@ -8,12 +8,21 @@
 angular.module('ContentTopic.controllers', []);
 angular.module('ContentTopic.controllers').controller('ContentTopicController', function($scope, ContentTopicService) {
 
-    ContentTopicService.getContentTopic('577e8ebfd4c61ebc71746fcd')
-        .then(function success(response) {
-            $scope.topicData = response.data;
-    }, function failed(response) {
-        console.log('An error occurred: ' + response.statusText);
-    });
+    ContentTopicService.getContentTopic('57800722d4c62d383380acb6')
+        .then(function success(data, status, headers) {
+            $scope.topicData = data.data;
+        }, function failed(data, status, headers, config) {
+        console.log(status + ' ' + data.statusText);
+        });
+
+    function saveContentTopic() {
+        ContentTopicService.updateContentTopic($scope.topicData)
+            .then(function success(response) {
+                console.log(response.statusText)
+            }, function failed(response) {
+                console.log(response.statusText)
+            });
+    }
 
     $scope.startEditMode = function() {
         $scope.editMode = true;
@@ -23,9 +32,9 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
         $scope.editMode = false;
     };
 
-    $scope.addTextSnippet = function(index) {
-        $scope.topicData.snippetGroups[index].snippets.push({
-            "type": "TextSnippet",
+    $scope.addTextSnippet = function(groupIndex) {
+        $scope.topicData.snippetGroups[groupIndex].snippets.push({
+            "@type": "text",
             "title": "Title",
             "annotations": [],
             "truthLevel": "Truth",
@@ -35,12 +44,13 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
         });
     };
 
-    $scope.deleteSnippet = function(group, index) {
+    $scope.deleteSnippet = function(groupIndex, index) {
         $scope.topicData.snippetGroups[group].snippets.splice(index, 1);
     };
 
     $scope.saveContentTopic = function() {
         console.log("Saving content topic");
+        saveContentTopic()
         $scope.editMode = false;
     };
 });

@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class ContentTopic {
 
     @Id
-    protected String topicID;
-    protected ContentTopicType topicType;
+    protected String id;
+    protected ContentTopicType type;
     protected ArrayList<SnippetGroup> snippetGroups;
     // TODO: Hold links to other content
 
@@ -29,6 +29,6 @@ public class ContentTopic {
     }
 
     public String getID() {
-        return topicID;
+        return id;
     }
 }

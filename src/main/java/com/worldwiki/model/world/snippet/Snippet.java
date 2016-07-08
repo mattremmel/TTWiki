@@ -8,14 +8,20 @@
 package com.worldwiki.model.world.snippet;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = TextSnippet.class, name = "text"),
+        @JsonSubTypes.Type(value = ListSnippet.class, name = "list"),
+        @JsonSubTypes.Type(value = DateSnippet.class, name = "date"),
+        @JsonSubTypes.Type(value = ImageSnippet.class, name = "image"),
+})
 public abstract class Snippet {
-
-    // The snippet type that defines what kind of content it contains
-    protected SnippetType type;
 
     // The title of the snippet that describes the context of the snippet (Name, age, ect)
     protected String title;
@@ -31,4 +37,8 @@ public abstract class Snippet {
 
     // The style of the snippet, which provides the GM with context of how to present the content
     protected SnippetStyle style;
+
+    public Snippet() {
+        this.annotations = new ArrayList<String>();
+    }
 }

@@ -20,9 +20,11 @@ public class ListSnippet extends Snippet {
     // The source where the options for the list are defined
     protected String source;
 
+    public ListSnippet() {
+        this.content = new ArrayList<String>();
+    }
 
     public ListSnippet(String source, String title) {
-        this.type = SnippetType.ListSnippet;
         this.source = source;
         this.title = title;
         this.content = new ArrayList<String>();

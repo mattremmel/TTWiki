@@ -13,8 +13,11 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class DateSnippet extends Snippet {
 
+    public DateSnippet() {
+
+    }
+
     public DateSnippet(String title) {
-        this.type = SnippetType.DateSnippet;
         this.title = title;
     }
 }
