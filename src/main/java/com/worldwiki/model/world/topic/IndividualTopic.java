@@ -145,9 +145,9 @@ public class IndividualTopic extends ContentTopic {
         // Background
         SnippetGroup background = new SnippetGroup("Background");
         background.addSnippet(new DateSnippet("Birth Date"));
-        background.addSnippet(new DateSnippet("Marriage Snippet"));
+        background.addSnippet(new DateSnippet("Marriage"));
         background.addSnippet(new DateSnippet("Death Date"));
-        background.addSnippet(new TextSnippet("Historical Detials"));
+        background.addSnippet(new TextSnippet("Historical Details"));
         background.addSnippet(new TextSnippet("Obscure Trivia"));
         this.snippetGroups.add(background);
 
