@@ -6,6 +6,6 @@
 // Copyright (c) 2016 Matthew Remmel. All rights reserved.
 
 angular.module('ContentTopic.controllers', []);
-angular.module('ContentTopic.controllers').controller('ContentTopicController', function($scope) {
+angular.module('ContentTopic.controllers').controller('ContentTopicController', function($scope, ContentTopicService) {
     $scope.controllerTest = "Controller is working!"
 });

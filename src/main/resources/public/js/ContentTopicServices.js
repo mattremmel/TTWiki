@@ -8,4 +8,11 @@
 angular.module('ContentTopic.services', []);
 angular.module('ContentTopic.services').factory('ContentTopicService', function($http) {
 
+    var ContentTopicAPI = {};
+
+    ContentTopicAPI.getContentTopic = function(id) {
+        return $http.get('localhost:8080/api/topic/' + id);
+    }
+
+    return ContentTopicAPI;
 });
