@@ -7,7 +7,19 @@
 </head>
 
 <body ng-controller="ContentTopicController">
-    <span>{{topicData}}</span>
+
+    <h3>{{topicData['topicType']}}</h3>
+
+    <div class="snippetGroup" ng-repeat="group in topicData['snippetGroups']">
+
+        <h4>{{group['title']}}</h4>
+        <p ng-repeat="snippet in group['snippets']">
+            {{snippet['title']}}
+            <input type="text" placeholder="Enter text.." ng-model="snippet['content']" />
+        </p>
+        <br>
+    </div>
+
 </body>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
