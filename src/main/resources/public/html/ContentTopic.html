@@ -11,7 +11,7 @@
 
 <body ng-controller="ContentTopicController">
 
-    <h3>{{topicData['topicType']}}</h3>
+    <h3>{{topicData.type}}</h3>
     <p>
         <button ng-if="!editMode" ng-click="startEditMode()">Edit</button>
         <button ng-if="editMode" ng-click="cancelEditMode();">Cancel</button>

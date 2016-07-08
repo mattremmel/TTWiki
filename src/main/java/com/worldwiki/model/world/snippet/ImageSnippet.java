@@ -13,8 +13,11 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ImageSnippet extends Snippet {
 
+    public ImageSnippet() {
+
+    }
+
     public ImageSnippet(String title) {
-        this.type = SnippetType.ImageSnippet;
         this.title = title;
     }
 }

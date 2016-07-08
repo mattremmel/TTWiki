@@ -8,6 +8,7 @@
 package com.worldwiki.model.world.snippet;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import java.util.ArrayList;
 
 
@@ -17,8 +18,11 @@ public class TextSnippet extends Snippet {
     // The text based content of this snippet
     protected String content;
 
+    public TextSnippet() {
+
+    }
+
     public TextSnippet(String title) {
-        this.type = SnippetType.TextSnippet;
         this.title = title;
         this.content = "";
         this.annotations = new ArrayList<String>();

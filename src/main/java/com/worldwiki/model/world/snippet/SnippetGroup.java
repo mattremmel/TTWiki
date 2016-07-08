@@ -20,6 +20,10 @@ public class SnippetGroup {
     // The collection of snippets in this group
     private ArrayList<Snippet> snippets;
 
+    public SnippetGroup() {
+        this.snippets = new ArrayList<Snippet>();
+    }
+
     public SnippetGroup(String title) {
         this.title = title;
         this.snippets = new ArrayList<Snippet>();

@@ -8,12 +8,21 @@
 angular.module('ContentTopic.controllers', []);
 angular.module('ContentTopic.controllers').controller('ContentTopicController', function($scope, ContentTopicService) {
 
-    ContentTopicService.getContentTopic('577e8ebfd4c61ebc71746fcd')
-        .then(function success(response) {
-            $scope.topicData = response.data;
-    }, function failed(response) {
-        console.log('An error occurred: ' + response.statusText);
-    });
+    ContentTopicService.getContentTopic('57800722d4c62d383380acb6')
+        .then(function success(data, status, headers) {
+            $scope.topicData = data.data;
+        }, function failed(data, status, headers, config) {
+        console.log(status + ' ' + data.statusText);
+        });
+
+    function saveContentTopic() {
+        ContentTopicService.updateContentTopic($scope.topicData)
+            .then(function success(response) {
+                console.log(response.statusText)
+            }, function failed(response) {
+                console.log(response.statusText)
+            });
+    }
 
     $scope.startEditMode = function() {
         $scope.editMode = true;
@@ -25,7 +34,7 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
 
     $scope.addTextSnippet = function(index) {
         $scope.topicData.snippetGroups[index].snippets.push({
-            "type": "TextSnippet",
+            "@type": "text",
             "title": "Title",
             "annotations": [],
             "truthLevel": "Truth",
@@ -41,6 +50,7 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
 
     $scope.saveContentTopic = function() {
         console.log("Saving content topic");
+        saveContentTopic()
         $scope.editMode = false;
     };
 });
