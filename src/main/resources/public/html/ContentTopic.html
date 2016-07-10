@@ -11,20 +11,25 @@
 
 <body ng-controller="ContentTopicController">
 
+    <!-- Content Topic Type -->
     <h3>{{topicData.type}}</h3>
-    <p>
+
+    <!-- Edit, Cancel, Save Buttons -->
+    <div>
         <button ng-if="!editMode" ng-click="startEditMode()">Edit</button>
         <button ng-if="editMode" ng-click="cancelEditMode();">Cancel</button>
         <button ng-if="editMode" ng-click="saveContentTopic()">Save</button>
-    </p>
+    </div>
 
+    <!-- Loop through Snippet Groups -->
     <div ng-repeat="(groupIndex, group) in topicData.snippetGroups" ng-show="(group.snippets | filter:filterSnippets()).length" >
 
-        <!-- TODO: Can break out snippet types into partials to be loaded with contained content -->
+        <!-- Snippet Group Title -->
         <h4>{{group.title}}</h4>
 
-            <span ng-repeat="(snippetIndex, snippet) in group.snippets | filter:filterSnippets()" >
-                <p>
+            <!-- Loop through Snippets -->
+            <div ng-repeat="(snippetIndex, snippet) in group.snippets | filter:filterSnippets()" >
+
                     <!-- Revealed Checkbox -->
                     <input type="checkbox" ng-model="snippet.revealed" />
 
@@ -36,15 +41,15 @@
                     <input type="text" ng-show="editMode" ng-model="snippet.title" />
                     <input type="text" ng-show="editMode" ng-model="snippet.content" />
                     <button ng-show="editMode" ng-click="deleteSnippet(groupIndex, snippetIndex)" >Delete</button>
-                </p>
-            </span>
+            </div>
 
-        <!--  -->
+        <!-- Add Snippet to Snippet Group -->
         <button ng-show="editMode" ng-click="addTextSnippet($index)" >Add</button>
-        <br>
+
     </div>
 
-    <button ng-show="editMode" ng-click="saveContentTopic()">Save</button>
+    <!-- Add New Snippet Group -->
+    <button ng-show="editMode" ng-click="addSnippetGroup()">Add Category</button>
 
 </body>
 
