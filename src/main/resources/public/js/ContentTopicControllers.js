@@ -8,17 +8,22 @@
 angular.module('ContentTopic.controllers', []);
 angular.module('ContentTopic.controllers').controller('ContentTopicController', function($scope, ContentTopicService) {
 
+    // The topic data as it is represented on the server
+    var remoteTopicData = {};
+
     ContentTopicService.getContentTopic('57800722d4c62d383380acb6')
         .then(function success(data, status, headers) {
             $scope.topicData = data.data;
+            remoteTopicData = angular.copy(data.data);
         }, function failed(data, status, headers, config) {
-        console.log(status + ' ' + data.statusText);
+            console.log(status + ' ' + data.statusText);
         });
 
     function saveContentTopic() {
         ContentTopicService.updateContentTopic($scope.topicData)
             .then(function success(response) {
-                console.log(response.statusText)
+                $scope.topicData = response.data;
+                remoteTopicData = angular.copy(response.data);
             }, function failed(response) {
                 console.log(response.statusText)
             });
@@ -44,6 +49,8 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
     };
 
     $scope.cancelEditMode = function() {
+        // Reset topic data
+        $scope.topicData = angular.copy(remoteTopicData);
         $scope.editMode = false;
     };
 
