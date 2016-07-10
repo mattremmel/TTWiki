@@ -20,6 +20,7 @@ public class ContentTopic {
 
     @Id
     protected String id;
+    protected String title;
     protected ContentTopicType type;
     protected ArrayList<SnippetGroup> snippetGroups;
     // TODO: Hold links to other content

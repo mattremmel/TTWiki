@@ -18,6 +18,7 @@ public class IndividualTopic extends ContentTopic {
 
         // Set topic type
         this.type = ContentTopicType.Individual;
+        this.title = "Content Title";
 
         // Name
         SnippetGroup name = new SnippetGroup("Name");

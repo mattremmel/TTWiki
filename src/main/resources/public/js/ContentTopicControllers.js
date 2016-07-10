@@ -11,13 +11,15 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
     // The topic data as it is represented on the server
     var remoteTopicData = {};
 
-    ContentTopicService.getContentTopic('57800722d4c62d383380acb6')
-        .then(function success(data, status, headers) {
-            $scope.topicData = data.data;
-            remoteTopicData = angular.copy(data.data);
-        }, function failed(data, status, headers, config) {
-            console.log(status + ' ' + data.statusText);
-        });
+    $scope.getContentTopic = function (id) {
+        ContentTopicService.getContentTopic(id)
+            .then(function success(data, status, headers) {
+                $scope.topicData = data.data;
+                remoteTopicData = angular.copy(data.data);
+            }, function failed(data, status, headers, config) {
+                console.log(status + ' ' + data.statusText);
+            });
+    }
 
     function saveContentTopic() {
         ContentTopicService.updateContentTopic($scope.topicData)
@@ -89,6 +91,10 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
 
     $scope.deleteSnippet = function(groupIndex, index) {
         $scope.topicData.snippetGroups[groupIndex].snippets.splice(index, 1);
+    };
+
+    $scope.deleteSnippetGroup = function(groupIndex) {
+        $scope.topicData.snippetGroups.splice(groupIndex, 1);
     };
 
     $scope.saveContentTopic = function() {

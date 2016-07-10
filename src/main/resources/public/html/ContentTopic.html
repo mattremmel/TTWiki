@@ -4,15 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Content Topic</title>
-    <style>
-        [ng\:cloak], [ng-cloak], .ng-cloak { display: none; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap.min.css">
+    <style>[ng\:cloak], [ng-cloak], .ng-cloak { display: none; }</style>
 </head>
 
 <body ng-controller="ContentTopicController">
 
-    <!-- Content Topic Type -->
-    <h3>{{topicData.type}}</h3>
+    <!-- Get Content Topic Input -->
+    <div>
+        <input type="text" ng-model="topicIDInput" />
+        <button ng-click="getContentTopic(topicIDInput)">Get</button>
+    </div>
+
+    <!-- Content Topic Info Normal -->
+    <h3 ng-show="!editMode">{{topicData.title}}</h3>
+    <h5 ng-show="!editMode">{{topicData.type}}</h5>
+
+    <!-- Content Topic Info Edit -->
+    <input type="text" ng-show="editMode" ng-model="topicData.title" />
+    <select class="form-control" ng-show="editMode" ng-model="topicData.type">
+        <option>Entity</option>
+        <option>Individual</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
 
     <!-- Edit, Cancel, Save Buttons -->
     <div>
@@ -29,6 +45,7 @@
             <!-- Handle for Re-ordering Snippet Groups -->
             <h4 ng-show="!editMode">{{group.title}}</h4>
             <h4 ng-show="editMode" sv-handle>== {{group.title}}</h4>
+            <button ng-show="editMode" ng-click="deleteSnippetGroup(groupIndex)">Delete</button>
 
             <!-- Loop through Snippets -->
             <div sv-root="snippets" sv-part="group.snippets">
@@ -64,6 +81,8 @@
 
     <script src="../lib/angular.min.js"></script>
     <script src="../lib/angular-sortable-view.min.js"></script>
+    <script src="../lib/jquery.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
     <script src="../js/ContentTopicApp.js"></script>
     <script src="../js/ContentTopicControllers.js"></script>
     <script src="../js/ContentTopicServices.js"></script>
