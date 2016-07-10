@@ -24,6 +24,21 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
             });
     }
 
+    $scope.filterSnippets = function() {
+        return function(snippet) {
+            if ($scope.editMode) {
+                return true;
+            }
+
+            // Handle Text Snippet
+            if (snippet['@type'] == 'text') {
+                return snippet.content.length > 0
+            }
+
+            return false;
+        }
+    };
+
     $scope.startEditMode = function() {
         $scope.editMode = true;
     };
