@@ -45,7 +45,7 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
     };
 
     $scope.deleteSnippet = function(groupIndex, index) {
-        $scope.topicData.snippetGroups[group].snippets.splice(index, 1);
+        $scope.topicData.snippetGroups[groupIndex].snippets.splice(index, 1);
     };
 
     $scope.saveContentTopic = function() {
