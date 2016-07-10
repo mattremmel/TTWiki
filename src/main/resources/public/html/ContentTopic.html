@@ -22,13 +22,20 @@
     </div>
 
     <!-- Loop through Snippet Groups -->
-    <div ng-repeat="(groupIndex, group) in topicData.snippetGroups" ng-show="(group.snippets | filter:filterSnippets()).length" >
+    <div sv-root="snippetGroups" sv-part="topicData.snippetGroups">
+        <div ng-repeat="(groupIndex, group) in topicData.snippetGroups" ng-show="(group.snippets | filter:filterSnippets()).length" sv-element>
 
-        <!-- Snippet Group Title -->
-        <h4>{{group.title}}</h4>
+            <!-- Snippet Group Title -->
+            <!-- Handle for Re-ordering Snippet Groups -->
+            <h4 ng-show="!editMode">{{group.title}}</h4>
+            <h4 ng-show="editMode" sv-handle>== {{group.title}}</h4>
 
             <!-- Loop through Snippets -->
-            <div ng-repeat="(snippetIndex, snippet) in group.snippets | filter:filterSnippets()" >
+            <div sv-root="snippets" sv-part="group.snippets">
+                <div ng-repeat="(snippetIndex, snippet) in group.snippets | filter:filterSnippets()" sv-element>
+
+                    <!-- Handle for Re-ordering Snippets -->
+                    <span ng-show="editMode" sv-handle>==</span>
 
                     <!-- Revealed Checkbox -->
                     <input type="checkbox" ng-model="snippet.revealed" />
@@ -40,12 +47,14 @@
                     <!-- Input Boxes for Edit Mode -->
                     <input type="text" ng-show="editMode" ng-model="snippet.title" />
                     <input type="text" ng-show="editMode" ng-model="snippet.content" />
-                    <button ng-show="editMode" ng-click="deleteSnippet(groupIndex, snippetIndex)" >Delete</button>
+                    <button ng-show="editMode" ng-click="deleteSnippet(groupIndex, snippetIndex)">Delete</button>
+                </div>
             </div>
 
-        <!-- Add Snippet to Snippet Group -->
-        <button ng-show="editMode" ng-click="addTextSnippet($index)" >Add</button>
+            <!-- Add Snippet to Snippet Group -->
+            <button ng-show="editMode" ng-click="addTextSnippet($index)">Add</button>
 
+        </div>
     </div>
 
     <!-- Add New Snippet Group -->
@@ -54,6 +63,7 @@
 </body>
 
     <script src="../lib/angular.js"></script>
+    <script src="../js/angular-sortable-view.js"></script>
     <script src="../js/ContentTopicApp.js"></script>
     <script src="../js/ContentTopicControllers.js"></script>
     <script src="../js/ContentTopicServices.js"></script>
