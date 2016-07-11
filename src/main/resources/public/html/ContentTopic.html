@@ -57,14 +57,18 @@
                     <!-- Revealed Checkbox -->
                     <input type="checkbox" ng-model="snippet.revealed" />
 
-                    <!-- Labels for Normal Mode -->
+                    <!-- Snippet Title -->
                     <span ng-show="!editMode" >{{snippet.title}}</span>
-                    <span ng-show="!editMode" >{{snippet.content}}</span>
-
-                    <!-- Input Boxes for Edit Mode -->
                     <input type="text" ng-show="editMode" ng-model="snippet.title" />
-                    <input type="text" ng-show="editMode" ng-model="snippet.content" />
+
+                    <!-- Add Text Snippet TODO: Insert these from controller -->
+                    <span ng-if="snippet['@type'] == 'text'" ng-include="'../partials/TextSnippet.html'"></span>
+
+                    <!-- Add List Snippet -->
+                    <span ng-if="snippet['@type'] == 'list'" ng-include="'../partials/ListSnippet.html'"></span>
+
                     <button ng-show="editMode" ng-click="deleteSnippet(groupIndex, snippetIndex)">Delete</button>
+
                 </div>
             </div>
 
