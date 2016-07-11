@@ -37,14 +37,14 @@ public class ContentTopicAPIController {
 
     // Create Content Topic
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ContentTopic createContentTopic(@RequestBody @Valid ContentTopic topic) {
         return service.create(topic);
     }
 
     // Update Content Topic
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ContentTopic updateContentTopic(@RequestBody @Valid ContentTopic topic) throws ContentTopicNotFoundException {
         return service.updateOne(topic);
     }
