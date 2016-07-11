@@ -22,6 +22,7 @@ public class ContentTopic {
     protected String id;
     protected String title;
     protected ContentTopicType type;
+    protected boolean revealed;
     protected ArrayList<SnippetGroup> snippetGroups;
     // TODO: Hold links to other content
 
