@@ -8,16 +8,24 @@
 package com.worldwiki.model.world.snippet;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import java.util.ArrayList;
 
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ImageSnippet extends Snippet {
 
-    public ImageSnippet() {
+    // This is the image data
+    protected byte[] data;
 
+    public ImageSnippet() {
+        this.annotations = new ArrayList<String>();
     }
 
     public ImageSnippet(String title) {
         this.title = title;
+        this.annotations = new ArrayList<String>();
+        this.truthLevel = TruthLevel.Truth;
+        this.revealed = false;
+        this.style = SnippetStyle.Normal;
     }
 }

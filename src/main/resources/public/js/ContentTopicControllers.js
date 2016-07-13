@@ -11,6 +11,7 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
     // The topic data as it is represented on the server
     var remoteTopicData = {};
 
+
     $scope.getContentTopic = function (id) {
         ContentTopicService.getContentTopic(id)
             .then(function success(data, status, headers) {
@@ -45,6 +46,10 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
             return false;
         }
     };
+
+    $scope.decodeBase64 = function(data) {
+       return atob(data);
+    } ;
 
     $scope.startEditMode = function() {
         $scope.editMode = true;
@@ -103,3 +108,22 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
         $scope.editMode = false;
     };
 });
+
+angular.module('ContentTopic.controllers').directive("ngfileinput", [function () {
+    return {
+        scope: {
+            ngfileinput: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function (loadEvent) {
+                    scope.$apply(function () {
+                        scope.ngfileinput = btoa(loadEvent.target.result);
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    }
+}]);

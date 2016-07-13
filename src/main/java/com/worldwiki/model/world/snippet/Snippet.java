@@ -17,7 +17,6 @@ import java.util.ArrayList;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = TextSnippet.class, name = "text"),
-//        @JsonSubTypes.Type(value = ListSnippet.class, name = "list"),
         @JsonSubTypes.Type(value = DateSnippet.class, name = "date"),
         @JsonSubTypes.Type(value = ImageSnippet.class, name = "image"),
 })

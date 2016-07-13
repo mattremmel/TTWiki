@@ -19,7 +19,7 @@ public class TextSnippet extends Snippet {
     protected String content;
 
     public TextSnippet() {
-
+        this.annotations = new ArrayList<String>();
     }
 
     public TextSnippet(String title) {
