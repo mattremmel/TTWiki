@@ -1,0 +1,24 @@
+@import url("lib/bootstrap.min.css");
+@import url("lib/font-awesome.min.css");
+@import url("lib/dropdowns-enhancement.min.css");
+
+body {
+    background-color: #e5e5e5;
+}
+
+.sv-handle {
+    cursor: move;
+    margin-right: 5px;
+}
+
+.snippetGroup {
+    margin: 1rem;
+}
+
+.revealedCheckbox {
+    margin: 5px;
+}
+
+.fetchTopicControl {
+    margin: 1rem 2rem 1rem;
+}

@@ -4,31 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Content Topic</title>
-    <link rel="stylesheet" type="text/css" href="../lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <style>[ng\:cloak], [ng-cloak], .ng-cloak { display: none; }</style>
 </head>
 
 <body ng-controller="ContentTopicController">
 
+
     <!-- Get Content Topic Input -->
-    <div>
-        <input type="text" ng-model="topicIDInput" />
-        <button ng-click="getContentTopic(topicIDInput)">Get</button>
+    <div class="input-group fetchTopicControl">
+        <input type="text" ng-model="topicIDInput" class="form-control" placeholder="Content Topic ID"/>
+        <span class="input-group-btn">
+            <button ng-click="getContentTopic(topicIDInput)" class="btn btn-secondary">Get</button>
+        </span>
     </div>
 
-    <!-- Content Topic Info Normal -->
-    <h3 ng-show="!editMode">{{topicData.title}}</h3>
-    <h5 ng-show="!editMode">{{topicData.type}}</h5>
 
-    <!-- Content Topic Info Edit -->
-    <input type="text" ng-show="editMode" ng-model="topicData.title" />
-    <select class="form-control" ng-show="editMode" ng-model="topicData.type">
-        <option>Entity</option>
-        <option>Individual</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-    </select>
+
 
     <!-- Edit, Cancel, Save Buttons -->
     <div>
@@ -37,43 +29,178 @@
         <button ng-if="editMode" ng-click="saveContentTopic()">Save</button>
     </div>
 
+
+
+
+    <!-- Topic Title and Type -->
+    <div class="snippetGroup card card-block">
+
+        <!-- Revealed Checkbox -->
+        <input type="checkbox" ng-model="topicData.revealed" class="revealedCheckbox"/>
+
+        <!-- Content Topic Title -->
+        <span ng-show="!editMode" class="">{{topicData.title}}</span>
+        <input type="text" ng-show="editMode" ng-model="topicData.title" />
+
+        <!-- Content Topic Type -->
+        <span ng-show="!editMode" class="label label-default">{{topicData.type}}</span>
+        <select ng-show="editMode" ng-model="topicData.type" class="form-control">
+            <option>Entity</option>
+            <option>Individual</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+
+    </div>
+
+
+
+
     <!-- Loop through Snippet Groups -->
     <div sv-root="snippetGroups" sv-part="topicData.snippetGroups">
-        <div ng-repeat="(groupIndex, group) in topicData.snippetGroups" ng-show="(group.snippets | filter:filterSnippets()).length" sv-element>
+        <div ng-repeat="(groupIndex, group) in topicData.snippetGroups" ng-show="(group.snippets | filter:filterSnippets()).length" sv-element class="snippetGroup card card-block">
 
-            <!-- Snippet Group Title -->
-            <!-- Handle for Re-ordering Snippet Groups -->
-            <h4 ng-show="!editMode">{{group.title}}</h4>
-            <h4 ng-show="editMode" sv-handle>== {{group.title}}</h4>
-            <button ng-show="editMode" ng-click="deleteSnippetGroup(groupIndex)">Delete</button>
+
+            <!-- Snippet Group - Normal -->
+            <span ng-if="!editMode">
+                <!-- Group Title -->
+                <div>{{group.title}}</div>
+            </span>
+
+
+            <!-- Snippet Group - Edit -->
+            <span ng-if="editMode">
+
+                <!-- Snippet Group Re-ordering Handle -->
+                <i sv-handle class="sv-handle fa fa-bars fa-lg"></i>
+
+                <!-- Group Title Input -->
+                <input type="text" ng-model="group.title" />
+
+                <!-- Group Title Drop Down Menu -->
+                <span class="dropdown pull-right">
+
+                    <!-- Drop Down Menu Button -->
+                    <button class="btn btn-secondary-outline btn-sm dropdown-toggle" type="button" data-toggle="dropdown"></button>
+
+                    <!-- Drop Down Menu Options -->
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" type="button">Action</button></li>
+                        <li><button class="dropdown-item" type="button">Another action</button></li>
+                        <li><button class="dropdown-item" type="button">Something else here</button></li>
+                        <li><div class="dropdown-divider"></div></li>
+                        <li><button ng-click="deleteSnippetGroup(groupIndex)" type="button" class="dropdown-item">DELETE</button></li>
+                    </ul>
+
+                </span>
+
+            </span>
+
+            <hr>
+
+
 
             <!-- Loop through Snippets -->
             <div sv-root="snippets" sv-part="group.snippets">
                 <div ng-repeat="(snippetIndex, snippet) in group.snippets | filter:filterSnippets()" sv-element>
 
-                    <!-- Handle for Re-ordering Snippets -->
-                    <span ng-show="editMode" sv-handle>==</span>
 
-                    <!-- Revealed Checkbox -->
-                    <input type="checkbox" ng-model="snippet.revealed" />
+                    <!-- Snippet - Normal -->
+                    <span ng-if="!editMode">
 
-                    <!-- Snippet Title -->
-                    <span ng-show="!editMode" >{{snippet.title}}</span>
-                    <input type="text" ng-show="editMode" ng-model="snippet.title" />
+                        <!-- Revealed Checkbox -->
+                        <input type="checkbox" ng-model="snippet.revealed" class="revealedCheckbox"/>
 
-                    <!-- Add Text Snippet TODO: Insert these from controller -->
-                    <span ng-if="snippet['@type'] == 'text'" ng-include="'../partials/TextSnippet.html'"></span>
+                        <!-- Snippet Title -->
+                        <span class="label label-default">{{snippet.title}}</span>
 
-                    <!-- Add List Snippet -->
-                    <span ng-if="snippet['@type'] == 'list'" ng-include="'../partials/ListSnippet.html'"></span>
+                        <!-- Add Text Snippet -->
+                        <span ng-if="snippet['@type'] == 'text'">
+                            <span class="lead small">{{snippet.content}}</span>
+                        </span>
 
-                    <button ng-show="editMode" ng-click="deleteSnippet(groupIndex, snippetIndex)">Delete</button>
+                        <!-- Add List Snippet -->
+                        <span ng-if="snippet['@type'] == 'list'">
+                            <span>{{snippet.content}}</span>
+                        </span>
+                    </span>
+
+
+                    <!-- Snippet - Edit -->
+                    <span ng-if="editMode">
+
+                        <!-- Snippet Re-ordering Handle -->
+                        <i sv-handle class="sv-handle fa fa-bars"></i>
+
+                        <!-- Revealed Checkbox -->
+                        <input type="checkbox" ng-model="snippet.revealed" />
+
+                        <!-- Snippet Title -->
+                        <input type="text" ng-model="snippet.title"/>
+
+                        <!-- Add Text Snippet -->
+                        <span ng-if="snippet['@type'] == 'text'">
+                            <input type="text" ng-model="snippet.content"/>
+                        </span>
+
+                        <!-- Add List Snippet -->
+                        <span ng-if="snippet['@type'] == 'list'">
+                            <span>{{snippet.content}}</span>
+                        </span>
+
+                        <!--Drop Down Menu-->
+                        <span class="dropdown">
+
+                            <!-- Drop Down Menu Button -->
+                            <button class="btn btn-secondary-outline btn-sm dropdown-toggle" type="button" data-toggle="dropdown"></button>
+
+                            <ul class="dropdown-menu">
+
+                                <!-- Sub Menu -->
+                                <li class="dropdown-submenu">
+
+                                    <!-- Truth level Sub Menu Button -->
+                                    <button class="dropdown-item" type="button" data-toggle="dropdown">Truth Level <i class="fa fa-caret-right pull-right"></i></button>
+
+                                    <!-- Drop Down Sub Menu Options -->
+                                    <ul class="dropdown-menu">
+                                        <li><button class="dropdown-item" type="button">Truth <i class="fa fa-check pull-right"></i></button></li> <!--TODO: Conditionaly show checkmark-->
+                                        <li><button class="dropdown-item" type="button">Half-truth</button></li>
+                                        <li><button class="dropdown-item" type="button">False</button></li>
+                                    </ul>
+                                </li>
+
+                                <!-- Dropdown Divider -->
+                                <li><div class="dropdown-divider"></div></li>
+
+                                <!-- Delete Button -->
+                                <li><button ng-click="deleteSnippet(groupIndex, snippetIndex)" type="button" class="dropdown-item">DELETE</button></li>
+                            </ul>
+
+                        </span>
+                    </span>
+
 
                 </div>
             </div>
 
-            <!-- Add Snippet to Snippet Group -->
-            <button ng-show="editMode" ng-click="addTextSnippet($index)">Add</button>
+
+            <!-- Add Snippets Drop Down Menu -->
+            <span ng-if="editMode" class="dropdown">
+
+                <!-- Drop Down Menu Button -->
+                <button class="btn btn-secondary-outline btn-sm" type="button" data-toggle="dropdown">Add Snippet</button>
+
+                <!-- Drop Down Menu Options -->
+                <div class="dropdown-menu">
+                    <button ng-click="addTextSnippet($index)" class="dropdown-item" type="button">Text Snippet</button>
+                    <button class="dropdown-item" type="button">Image Snippet</button>
+                    <button class="dropdown-item" type="button">Date Snippet</button>
+                    <button class="dropdown-item" type="button">Map Snippet</button>
+                </div>
+
+            </span>
 
         </div>
     </div>
@@ -83,12 +210,20 @@
 
 </body>
 
-    <script src="../lib/angular.min.js"></script>
-    <script src="../lib/angular-sortable-view.min.js"></script>
-    <script src="../lib/jquery.min.js"></script>
-    <script src="../lib/bootstrap.min.js"></script>
-    <script src="../js/ContentTopicApp.js"></script>
-    <script src="../js/ContentTopicControllers.js"></script>
-    <script src="../js/ContentTopicServices.js"></script>
+
+<!--
+**********************
+DEPENDENCIES
+**********************
+-->
+
+<script src="../lib/angular.min.js"></script>
+<script src="../lib/angular-sortable-view.min.js"></script>
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/bootstrap.min.js"></script>
+<script src="../lib/dropdowns-enhancement.js"></script>
+<script src="../js/ContentTopicApp.js"></script>
+<script src="../js/ContentTopicControllers.js"></script>
+<script src="../js/ContentTopicServices.js"></script>
 
 </html>
