@@ -30,20 +30,20 @@ public class IndividualTopic extends ContentTopic {
 
         // Overview
         SnippetGroup overview = new SnippetGroup("Overview");
-        overview.addSnippet(new ListSnippet("races", "Race"));
-        overview.addSnippet(new ListSnippet("gender", "Gender"));
-        overview.addSnippet(new ListSnippet("age", "Age"));
-        overview.addSnippet(new ListSnippet("class", "Class"));
-        overview.addSnippet(new ListSnippet("role", "Role"));
-        overview.addSnippet(new ListSnippet("condition", "Condition"));
+        overview.addSnippet(new TextSnippet("Race"));
+        overview.addSnippet(new TextSnippet("Gender"));
+        overview.addSnippet(new TextSnippet("Age"));
+        overview.addSnippet(new TextSnippet("Class"));
+        overview.addSnippet(new TextSnippet("Role"));
+        overview.addSnippet(new TextSnippet("Condition"));
         overview.addSnippet(new ImageSnippet("Portrait"));
         overview.addSnippet(new TextSnippet("Summary"));
         this.snippetGroups.add(overview);
 
         // Profile
         SnippetGroup profile = new SnippetGroup("Profile");
-        profile.addSnippet(new ListSnippet("appearance-traits", "Appearance Traits"));
-        profile.addSnippet(new ListSnippet("social-traits", "Social Traits"));
+        profile.addSnippet(new TextSnippet("Appearance Traits"));
+        profile.addSnippet(new TextSnippet("Social Traits"));
         profile.addSnippet(new TextSnippet("Stat Block"));
         profile.addSnippet(new TextSnippet("Reputation"));
         profile.addSnippet(new TextSnippet("Physical Description"));
@@ -58,12 +58,12 @@ public class IndividualTopic extends ContentTopic {
         story.addSnippet(new TextSnippet("Public Story"));
         story.addSnippet(new TextSnippet("Real Truths"));
         story.addSnippet(new DateSnippet("Important Date"));
-        story.addSnippet(new TextSnippet("Common Misconceptions"));
+        story.addSnippet(new TextSnippet("Misconceptions"));
         this.snippetGroups.add(story);
 
         // Motivation and Philosophy
         SnippetGroup motivationAndPhilosophy = new SnippetGroup("Motivation and Philosophy");
-        motivationAndPhilosophy.addSnippet(new ListSnippet("mental-traits", "Mental Traits"));
+        motivationAndPhilosophy.addSnippet(new TextSnippet("Mental Traits"));
         motivationAndPhilosophy.addSnippet(new TextSnippet("Attitude"));
         motivationAndPhilosophy.addSnippet(new TextSnippet("Reactions"));
         motivationAndPhilosophy.addSnippet(new TextSnippet("Beliefs"));
@@ -75,7 +75,7 @@ public class IndividualTopic extends ContentTopic {
 
         // Professional Life
         SnippetGroup professionalLife = new SnippetGroup("Professional Life");
-        professionalLife.addSnippet(new ListSnippet("expertise", "Expertise"));
+        professionalLife.addSnippet(new TextSnippet("Expertise"));
         professionalLife.addSnippet(new TextSnippet("Friends"));
         professionalLife.addSnippet(new TextSnippet("Allies"));
         professionalLife.addSnippet(new TextSnippet("Rivals"));
@@ -110,7 +110,7 @@ public class IndividualTopic extends ContentTopic {
 
         // Resources
         SnippetGroup resources = new SnippetGroup("Resources");
-        resources.addSnippet(new ListSnippet("status-traits", "Status Traits"));
+        resources.addSnippet(new TextSnippet("Status Traits"));
         resources.addSnippet(new TextSnippet("Wealth"));
         resources.addSnippet(new TextSnippet("Valuables"));
         resources.addSnippet(new TextSnippet("Supplies"));
@@ -124,7 +124,7 @@ public class IndividualTopic extends ContentTopic {
 
         // Abilities
         SnippetGroup abilities = new SnippetGroup("Abilities");
-        abilities.addSnippet(new ListSnippet("physical-traits", "Physical Traits"));
+        abilities.addSnippet(new TextSnippet("Physical Traits"));
         abilities.addSnippet(new TextSnippet("Powers"));
         abilities.addSnippet(new TextSnippet("Talents"));
         abilities.addSnippet(new TextSnippet("Skills"));
@@ -133,7 +133,7 @@ public class IndividualTopic extends ContentTopic {
 
         // Methods
         SnippetGroup methods = new SnippetGroup("Methods");
-        methods.addSnippet(new ListSnippet("personality-traits", "Personality Traits"));
+        methods.addSnippet(new TextSnippet("Personality Traits"));
         methods.addSnippet(new TextSnippet("Combat"));
         methods.addSnippet(new TextSnippet("Subterfuge"));
         methods.addSnippet(new TextSnippet("Diplomacy"));
