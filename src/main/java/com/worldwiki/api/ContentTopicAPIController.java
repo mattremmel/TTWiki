@@ -49,6 +49,13 @@ public class ContentTopicAPIController {
         return service.updateOne(topic);
     }
 
+    // Delete Content Topic
+    @RequestMapping(value = "delete/{topicID}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ContentTopic deleteContentTopic(@PathVariable String topicID) throws ContentTopicNotFoundException {
+        return service.deleteOne(topicID);
+    }
+
     // Exception Handler
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
