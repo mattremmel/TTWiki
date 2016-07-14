@@ -120,9 +120,9 @@
                             <span class="lead small">{{snippet.content}}</span>
                         </span>
 
-                        <!-- Add List Snippet -->
-                        <span ng-if="snippet['@type'] == 'list'">
-                            <span>{{snippet.content}}</span>
+                        <!-- Add Image Snippet -->
+                        <span ng-if="snippet['@type'] == 'image'">
+                            <!--<span>{{snippet.content}}</span>-->
                         </span>
                     </span>
 
@@ -141,12 +141,15 @@
 
                         <!-- Add Text Snippet -->
                         <span ng-if="snippet['@type'] == 'text'">
-                            <input type="text" ng-model="snippet.content"/>
+                            <!--<input type="text" ng-model="snippet.content"/>-->
+                            <textarea  msd-elastic rows="1" style="resize:none" ng-model="snippet.content" class="form-control"></textarea>
                         </span>
 
-                        <!-- Add List Snippet -->
-                        <span ng-if="snippet['@type'] == 'list'">
-                            <span>{{snippet.content}}</span>
+                        <!-- Add Image Snippet -->
+                        <span ng-if="snippet['@type'] == 'image'">
+                            <!--<img id="myImage" >-->
+                            <input type="file" name="file" ngfileinput="snippet.data" accept='image/*' />
+                            <img ng-src="{{decodeBase64(snippet.data)}}">
                         </span>
 
                         <!--Drop Down Menu-->
@@ -196,8 +199,8 @@
                 <div class="dropdown-menu">
                     <button ng-click="addTextSnippet($index)" class="dropdown-item" type="button">Text Snippet</button>
                     <button class="dropdown-item" type="button">Image Snippet</button>
-                    <button class="dropdown-item" type="button">Date Snippet</button>
-                    <button class="dropdown-item" type="button">Map Snippet</button>
+                    <!--<button class="dropdown-item" type="button">Date Snippet</button>-->
+                    <!--<button class="dropdown-item" type="button">Map Snippet</button>-->
                 </div>
 
             </span>
@@ -222,6 +225,7 @@ DEPENDENCIES
 <script src="../lib/jquery.min.js"></script>
 <script src="../lib/bootstrap.min.js"></script>
 <script src="../lib/dropdowns-enhancement.js"></script>
+<script src="../lib/angular-elastic.js"></script>
 <script src="../js/ContentTopicApp.js"></script>
 <script src="../js/ContentTopicControllers.js"></script>
 <script src="../js/ContentTopicServices.js"></script>
