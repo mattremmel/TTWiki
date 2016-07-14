@@ -57,7 +57,7 @@ public class IndividualTopic extends ContentTopic {
         story.addSnippet(new TextSnippet("Falsehoods"));
         story.addSnippet(new TextSnippet("Public Story"));
         story.addSnippet(new TextSnippet("Real Truths"));
-        story.addSnippet(new DateSnippet("Important Date"));
+        story.addSnippet(new TextSnippet("Important Date"));
         story.addSnippet(new TextSnippet("Misconceptions"));
         this.snippetGroups.add(story);
 
