@@ -106,12 +106,16 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
         );
     };
 
-    $scope.deleteSnippet = function(groupIndex, index) {
-        $scope.topicData.snippetGroups[groupIndex].snippets.splice(index, 1);
-    };
-
     $scope.deleteSnippetGroup = function(groupIndex) {
         $scope.topicData.snippetGroups.splice(groupIndex, 1);
+    };
+
+    $scope.deleteSnippet = function(groupIndex, snippetIndex) {
+        $scope.topicData.snippetGroups[groupIndex].snippets.splice(snippetIndex, 1);
+    };
+
+    $scope.deleteAnnotation = function(groupIndex, snippetIndex, annotationIndex) {
+        $scope.topicData.snippetGroups[groupIndex].snippets[snippetIndex].annotations.splice(annotationIndex, 1);
     };
 
     $scope.saveContentTopic = function() {

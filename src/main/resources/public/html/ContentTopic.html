@@ -142,17 +142,6 @@
                         <!-- Add Text Snippet -->
                         <span ng-if="snippet['@type'] == 'text'">
                             <textarea  msd-elastic rows="1" style="resize:none" ng-model="snippet.content" class="form-control"></textarea>
-
-                            <!-- Add Annotations -->
-                            <div sv-root="annotations" sv-part="snippet.annotations">
-                                <div ng-repeat="(annotationIndex, annotation) in snippet.annotations" sv-element>
-                                    <!-- Snippet Re-ordering Handle -->
-                                    <i sv-handle class="sv-handle fa fa-bars"></i>
-
-                                    <!-- Annotation Text Area -->
-                                    <textarea  msd-elastic rows="1" style="resize:none" ng-model="annotation.content" placeholder="Annotation" class="form-control"></textarea>
-                                </div>
-                            </div>
                         </span>
 
                         <!-- Add Image Snippet -->
@@ -195,6 +184,33 @@
                             </ul>
 
                         </span>
+
+                        <!-- Add Annotations -->
+                        <div sv-root="annotations" sv-part="snippet.annotations">
+                            <div ng-repeat="(annotationIndex, annotation) in snippet.annotations" sv-element>
+                                <!-- Snippet Re-ordering Handle -->
+                                <i sv-handle class="sv-handle fa fa-bars"></i>
+
+                                <!-- Annotation Text Area -->
+                                <textarea  msd-elastic rows="1" style="resize:none" ng-model="annotation.content" placeholder="Annotation" class="form-control"></textarea>
+
+                                <!-- Annotation Drop Down Menu-->
+                                <span class="dropdown">
+
+                                    <!-- Drop Down Menu Button -->
+                                    <button class="btn btn-secondary-outline btn-sm dropdown-toggle" type="button" data-toggle="dropdown"></button>
+
+                                    <ul class="dropdown-menu">
+                                        <!-- Delete Button -->
+                                        <li><button ng-click="deleteAnnotation(groupIndex, snippetIndex, annotationIndex)" type="button" class="dropdown-item">DELETE</button></li>
+                                    </ul>
+
+                                </span>
+
+
+                            </div>
+                        </div>
+
                     </span>
 
 
