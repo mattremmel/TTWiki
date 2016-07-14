@@ -18,12 +18,12 @@ public class ImageSnippet extends Snippet {
     protected byte[] data;
 
     public ImageSnippet() {
-        this.annotations = new ArrayList<String>();
+        this.annotations = new ArrayList<Annotation>();
     }
 
     public ImageSnippet(String title) {
         this.title = title;
-        this.annotations = new ArrayList<String>();
+        this.annotations = new ArrayList<Annotation>();
         this.truthLevel = TruthLevel.Truth;
         this.revealed = false;
         this.style = SnippetStyle.Normal;

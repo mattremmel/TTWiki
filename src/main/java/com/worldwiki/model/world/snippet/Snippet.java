@@ -26,7 +26,7 @@ public abstract class Snippet {
     protected String title;
 
     // A list of annotations or further detail provided for the GM, that's not revealed to the players
-    protected ArrayList<String> annotations;
+    protected ArrayList<Annotation> annotations;
 
     // The truth level of the snippet about the accuracy of the content, that's not revealed to the players
     protected TruthLevel truthLevel;
@@ -38,6 +38,6 @@ public abstract class Snippet {
     protected SnippetStyle style;
 
     public Snippet() {
-        this.annotations = new ArrayList<String>();
+        this.annotations = new ArrayList<Annotation>();
     }
 }

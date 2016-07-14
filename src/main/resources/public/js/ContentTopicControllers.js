@@ -63,20 +63,6 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
 
     $scope.setSnippetTruthLevel = function(groupIndex, snippetIndex, truthLevel) {
         $scope.topicData.snippetGroups[groupIndex].snippets[snippetIndex].truthLevel = truthLevel;
-    }
-
-    $scope.addTextSnippet = function(groupIndex) {
-        $scope.topicData.snippetGroups[groupIndex].snippets.push(
-            {
-            "@type": "text",
-            "title": "Title",
-            "annotations": [],
-            "truthLevel": "Truth",
-            "revealed": false,
-            "style": "Normal",
-            "content": ""
-            }
-        )
     };
 
     $scope.addSnippetGroup = function() {
@@ -96,6 +82,28 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
                 ]
             }
         )
+    };
+
+    $scope.addTextSnippet = function(groupIndex) {
+        $scope.topicData.snippetGroups[groupIndex].snippets.push(
+            {
+            "@type": "text",
+            "title": "Title",
+            "annotations": [],
+            "truthLevel": "Truth",
+            "revealed": false,
+            "style": "Normal",
+            "content": ""
+            }
+        )
+    };
+
+    $scope.addAnnotation = function(groupIndex, snippetIndex) {
+        $scope.topicData.snippetGroups[groupIndex].snippets[snippetIndex].annotations.push(
+            {"revealed": false,
+            "content": ""
+            }
+        );
     };
 
     $scope.deleteSnippet = function(groupIndex, index) {

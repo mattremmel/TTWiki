@@ -141,8 +141,18 @@
 
                         <!-- Add Text Snippet -->
                         <span ng-if="snippet['@type'] == 'text'">
-                            <!--<input type="text" ng-model="snippet.content"/>-->
                             <textarea  msd-elastic rows="1" style="resize:none" ng-model="snippet.content" class="form-control"></textarea>
+
+                            <!-- Add Annotations -->
+                            <div sv-root="annotations" sv-part="snippet.annotations">
+                                <div ng-repeat="(annotationIndex, annotation) in snippet.annotations" sv-element>
+                                    <!-- Snippet Re-ordering Handle -->
+                                    <i sv-handle class="sv-handle fa fa-bars"></i>
+
+                                    <!-- Annotation Text Area -->
+                                    <textarea  msd-elastic rows="1" style="resize:none" ng-model="annotation.content" placeholder="Annotation" class="form-control"></textarea>
+                                </div>
+                            </div>
                         </span>
 
                         <!-- Add Image Snippet -->
@@ -173,6 +183,9 @@
                                         <li><button ng-click="setSnippetTruthLevel(groupIndex, snippetIndex, 'False')" class="dropdown-item" type="button">False<i ng-show="snippet.truthLevel == 'False'" class="fa fa-check pull-right"></i></button></li>
                                     </ul>
                                 </li>
+
+                                <!-- Add Annotation -->
+                                <li><button ng-click="addAnnotation(groupIndex, snippetIndex)" type="button" class="dropdown-item">Add Annotation</button></li>
 
                                 <!-- Dropdown Divider -->
                                 <li><div class="dropdown-divider"></div></li>

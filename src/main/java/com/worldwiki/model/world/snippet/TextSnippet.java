@@ -19,13 +19,13 @@ public class TextSnippet extends Snippet {
     protected String content;
 
     public TextSnippet() {
-        this.annotations = new ArrayList<String>();
+        this.annotations = new ArrayList<Annotation>();
     }
 
     public TextSnippet(String title) {
         this.title = title;
         this.content = "";
-        this.annotations = new ArrayList<String>();
+        this.annotations = new ArrayList<Annotation>();
         this.truthLevel = TruthLevel.Truth;
         this.revealed = false;
         this.style = SnippetStyle.Normal;
