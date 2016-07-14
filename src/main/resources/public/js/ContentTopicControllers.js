@@ -61,6 +61,10 @@ angular.module('ContentTopic.controllers').controller('ContentTopicController', 
         $scope.editMode = false;
     };
 
+    $scope.setSnippetTruthLevel = function(groupIndex, snippetIndex, truthLevel) {
+        $scope.topicData.snippetGroups[groupIndex].snippets[snippetIndex].truthLevel = truthLevel;
+    }
+
     $scope.addTextSnippet = function(groupIndex) {
         $scope.topicData.snippetGroups[groupIndex].snippets.push(
             {

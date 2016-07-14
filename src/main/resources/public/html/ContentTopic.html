@@ -160,7 +160,7 @@
 
                             <ul class="dropdown-menu">
 
-                                <!-- Sub Menu -->
+                                <!-- Truth Level Sub Menu -->
                                 <li class="dropdown-submenu">
 
                                     <!-- Truth level Sub Menu Button -->
@@ -168,9 +168,9 @@
 
                                     <!-- Drop Down Sub Menu Options -->
                                     <ul class="dropdown-menu">
-                                        <li><button class="dropdown-item" type="button">Truth <i class="fa fa-check pull-right"></i></button></li> <!--TODO: Conditionaly show checkmark-->
-                                        <li><button class="dropdown-item" type="button">Half-truth</button></li>
-                                        <li><button class="dropdown-item" type="button">False</button></li>
+                                        <li><button ng-click="setSnippetTruthLevel(groupIndex, snippetIndex, 'Truth')" class="dropdown-item" type="button">Truth <i ng-show="snippet.truthLevel == 'Truth'" class="fa fa-check pull-right"></i></button></li>
+                                        <li><button ng-click="setSnippetTruthLevel(groupIndex, snippetIndex, 'Half-truth')" class="dropdown-item" type="button">Half-truth<i ng-show="snippet.truthLevel == 'Half-truth'" class="fa fa-check pull-right"></i></button></li>
+                                        <li><button ng-click="setSnippetTruthLevel(groupIndex, snippetIndex, 'False')" class="dropdown-item" type="button">False<i ng-show="snippet.truthLevel == 'False'" class="fa fa-check pull-right"></i></button></li>
                                     </ul>
                                 </li>
 
